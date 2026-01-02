@@ -1,0 +1,46 @@
+/* Reset y Comportamiento Base */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #181818;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+/* Navegación Lateral */
+.nav-link {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    transform-origin: center;
+    white-space: nowrap;
+    display: inline-block;
+    width: 60px; /* Base para control de rotación */
+    text-align: center;
+}
+
+.nav-link:hover {
+    color: #4ef3a1;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #181818;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4ef3a1;
+}
+
+/* Ajustes de diseño de Stack */
+@media (min-width: 768px) {
+    .group:hover span:first-child {
+        padding-left: 16px;
+    }
+}
