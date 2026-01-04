@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = document.querySelectorAll(".nav-link");
-    navLinks.forEach((link) => {
+    const links = document.querySelectorAll("nav a");
+    links.forEach((link) => {
         link.addEventListener("click", (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute("href");
-            const targetSection = document.querySelector(targetId);
-
-            gsap.to(window, {
-                duration: 1.2,
-                scrollTo: { y: targetSection, autoKill: false },
-                ease: "power4.inOut",
-            });
+            if (targetId && targetId.startsWith("#")) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    gsap.to(window, {
+                        duration: 0.8,
+                        scrollTo: { y: targetSection, autoKill: false },
+                        ease: "power2.inOut",
+                    });
+                }
+            }
         });
     });
 
@@ -24,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         },
-        { threshold: 0.1 }
+        { threshold: 0.05 }
     );
 
     sections.forEach((section) => {
         section.style.opacity = "0";
-        section.style.transform = "translateY(32px)";
-        section.style.transition = "all 1s cubic-bezier(0.16, 1, 0.3, 1)";
+        section.style.transform = "translateY(15px)";
+        section.style.transition = "all 0.6s cubic-bezier(0.2, 1, 0.3, 1)";
         observer.observe(section);
     });
 });
