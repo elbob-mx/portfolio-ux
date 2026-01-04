@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollToPlugin);
 
-    // --- LÓGICA DE IDIOMA ---
     let currentLang = "ESP";
-
     const translations = {
         ESP: {
             "nav-start": "INICIO",
@@ -17,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "nav-contact": "CONTACTO",
             "m-nav-contact": "CONTACTO",
             "hero-desc":
-                "He pasado los últimos 15 años aprendiendo que el diseño no es lo que se ve, sino lo que se entiende.",
+                "En mis 15 años como diseñador, sé que el diseño no solamente se ve, ayuda a entender.",
             "story-title": "// Narrativa",
             "story-desc":
                 "Transformo problemas complejos en soluciones que se sienten naturales. Mi enfoque no se basa en suposiciones, sino en evidencia.",
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "nav-contact": "CONTACT",
             "m-nav-contact": "CONTACT",
             "hero-desc":
-                "I have spent the last 15 years learning that design is not what you see, but what you understand.",
+                "In my 15 years as a designer, I know that design is not just seen, it helps to understand.",
             "story-title": "// Narrative",
             "story-desc":
                 "I transform complex problems into solutions that feel natural. My approach is not based on assumptions, but on evidence.",
@@ -55,32 +53,24 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     };
 
-    const toggleLang = () => {
-        currentLang = currentLang === "ESP" ? "ENG" : "ESP";
-
-        // Actualizar etiquetas de los botones
-        document.querySelectorAll(".lang-label").forEach((el) => (el.textContent = currentLang));
-
-        // Actualizar textos por ID
-        Object.keys(translations[currentLang]).forEach((id) => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = translations[currentLang][id];
-        });
-
-        // Actualizar niveles del Stack (usando data-attributes)
-        document.querySelectorAll(".software-level").forEach((el) => {
-            const key = el.getAttribute("data-lang");
-            if (translations[currentLang][key]) {
-                el.textContent = translations[currentLang][key];
-            }
-        });
-    };
-
+    // ... (Lógica de toggleLang, scroll engine y One-Shot Stack se mantienen iguales)
     document.querySelectorAll(".lang-toggle").forEach((btn) => {
-        btn.addEventListener("click", toggleLang);
+        btn.addEventListener("click", () => {
+            currentLang = currentLang === "ESP" ? "ENG" : "ESP";
+            document
+                .querySelectorAll(".lang-label")
+                .forEach((el) => (el.textContent = currentLang));
+            Object.keys(translations[currentLang]).forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = translations[currentLang][id];
+            });
+            document.querySelectorAll(".software-level").forEach((el) => {
+                const key = el.getAttribute("data-lang");
+                if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+            });
+        });
     });
 
-    // --- LÓGICA DE SCROLL Y OBSERVER (LO LOGRADO ANTERIORMENTE) ---
     const links = document.querySelectorAll("nav a");
     links.forEach((link) => {
         link.addEventListener("click", (e) => {
@@ -99,26 +89,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(
+    const stackContainer = document.getElementById("skills");
+    const softwareRows = document.querySelectorAll(".software-row");
+    gsap.set(softwareRows, { opacity: 0, x: -20 });
+    const stackObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
+                    gsap.to(softwareRows, {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        ease: "power2.out",
+                    });
+                    stackObserver.unobserve(entry.target);
                 }
             });
         },
-        {
-            threshold: 0.05,
-            rootMargin: "0px 0px -50px 0px",
-        }
+        { threshold: 0.2 }
     );
-
-    sections.forEach((section) => {
-        section.style.opacity = "0";
-        section.style.transform = "translateY(20px)";
-        section.style.transition = "all 0.8s cubic-bezier(0.2, 1, 0.3, 1)";
-        observer.observe(section);
-    });
+    if (stackContainer) stackObserver.observe(stackContainer);
 });

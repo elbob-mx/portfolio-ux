@@ -1,5 +1,16 @@
+.font-worksans {
+    font-family: "Work Sans", sans-serif;
+}
+.font-800 {
+    font-weight: 800;
+}
+.font-700 {
+    font-weight: 700;
+}
+
 html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
 }
 
 body {
@@ -40,13 +51,12 @@ body {
 }
 
 .nav-link {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: #c4c4c4;
     transition: all 0.3s ease;
     text-decoration: none;
 }
-
 .nav-link:hover {
     color: #4ef3a1;
 }
@@ -66,33 +76,26 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    transition: all 0.3s ease;
 }
 
-.software-name {
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.software-level {
-    font-size: 12px;
-    opacity: 0.4;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-}
-
-@media (min-width: 768px) {
-    .software-name {
-        font-size: 24px;
-    }
+/* Lógica del Cajón de Texto */
+.project-info-drawer {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 1024px) {
-    .software-row:hover {
-        padding-left: 16px;
+    .project-info-drawer {
+        grid-template-rows: 0fr;
     }
-    .software-row:hover .software-name {
-        color: #4ef3a1;
+    .project-card:hover .project-info-drawer {
+        grid-template-rows: 1fr;
     }
+}
+
+.lang-btn-pill:active,
+.mobile-nav-item:active,
+.project-card:active {
+    transform: scale(0.95);
 }
