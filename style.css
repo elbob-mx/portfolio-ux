@@ -2,6 +2,9 @@
 .font-worksans {
     font-family: "Work Sans", sans-serif;
 }
+.font-didact {
+    font-family: "Didact Gothic", sans-serif;
+}
 .font-800 {
     font-weight: 800;
 }
@@ -101,23 +104,22 @@ body {
     transform: scale(0.95);
 }
 
-/* --- EFECTO LUZ CÓSMICA (AJUSTADO A 50px Y -15% BRILLO) --- */
+/* --- EFECTO LUZ CÓSMICA --- */
 .cosmic-light-glow {
     position: absolute;
-    bottom: -10px; /* Ajustado para la nueva altura */
+    bottom: -10px;
     left: 0;
     width: 100%;
-    height: 50px; /* Reducido a la mitad */
+    height: 50px;
     pointer-events: none;
     z-index: 0;
-    /* Opacidad reducida un 15% (de 0.25 a 0.21 y de 0.08 a 0.06) */
     background: linear-gradient(
         to top,
         rgba(78, 243, 161, 0.21) 0%,
         rgba(78, 243, 161, 0.06) 50%,
         transparent 100%
     );
-    filter: blur(40px); /* Un poco menos de blur para que no se pierda al ser pequeña */
+    filter: blur(40px);
     will-change: transform, opacity;
 }
 
