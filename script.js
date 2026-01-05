@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     };
 
-    // ... (Lógica de toggleLang, scroll engine y One-Shot Stack se mantienen iguales)
     document.querySelectorAll(".lang-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
             currentLang = currentLang === "ESP" ? "ENG" : "ESP";
@@ -68,24 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const key = el.getAttribute("data-lang");
                 if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
             });
-        });
-    });
-
-    const links = document.querySelectorAll("nav a");
-    links.forEach((link) => {
-        link.addEventListener("click", (e) => {
-            const targetId = link.getAttribute("href");
-            if (targetId && targetId.startsWith("#")) {
-                e.preventDefault();
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    gsap.to(window, {
-                        duration: 0.8,
-                        scrollTo: { y: targetSection, autoKill: false },
-                        ease: "power3.inOut",
-                    });
-                }
-            }
         });
     });
 
@@ -110,4 +91,36 @@ document.addEventListener("DOMContentLoaded", () => {
         { threshold: 0.2 }
     );
     if (stackContainer) stackObserver.observe(stackContainer);
+
+    const contactSection = document.getElementById("contact");
+    const cosmicGlow = document.querySelector(".cosmic-light-glow");
+    const contactObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    gsap.to(cosmicGlow, { opacity: 1, duration: 2.5, ease: "sine.inOut" });
+                    cosmicGlow.classList.add("cosmic-active");
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+    if (contactSection) contactObserver.observe(contactSection);
+
+    document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+            const targetId = link.getAttribute("href");
+            if (targetId && targetId.startsWith("#")) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    gsap.to(window, {
+                        duration: 0.8,
+                        scrollTo: { y: targetSection, autoKill: false },
+                        ease: "power3.inOut",
+                    });
+                }
+            }
+        });
+    });
 });
