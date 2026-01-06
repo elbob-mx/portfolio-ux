@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollToPlugin);
 
-    let currentLang = "ESP"; // Inicia en Español
+    let currentLang = "ESP";
     const translations = {
         ESP: {
             "nav-start": "INICIO",
@@ -21,8 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Transformo problemas complejos en soluciones que se sienten naturales. Mi enfoque no se basa en suposiciones, sino en evidencia.",
             "stack-title": "// Software Stack",
             "work-title": "// Trabajo Seleccionado",
-            "project-1": "Rediseño de YouTube Music",
             "contact-title": "// Contacto",
+            "project-1-title": "YouTube Music Redesign",
+            "project-1-desc-dk":
+                "A partir de fricciones detectadas, diseñe nuevas funciones para simplificar tareas constantes.",
+            "project-1-desc-mb":
+                "A partir de fricciones detectadas, diseñe nuevas funciones para simplificar tareas constantes.",
+            "project-1-before-title-dk": "Problemas Detectados (El antes)",
+            "project-1-before-title-mb": "// Problemas Detectados",
+            "project-1-before-desc-dk":
+                "Dificultad en la navegación de listas de reproducción extensas.",
+            "project-1-before-desc-mb":
+                "Dificultad en la navegación de listas de reproducción extensas.",
+            "project-1-after-title-dk": "Resultados Obtenidos (El después)",
+            "project-1-after-title-mb": "// Resultados Obtenidos",
+            "project-1-after-desc-dk":
+                "Reducción del 30% en clics para acceder a contenido favorito.",
+            "project-1-after-desc-mb":
+                "Reducción del 30% en clics para acceder a contenido favorito.",
+            "btn-view": "Ver Proyecto",
             exp: "Experto",
             adv: "Avanzado",
             prof: "Competente",
@@ -45,8 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 "I transform complex problems into solutions that feel natural. My approach is not based on assumptions, but on evidence.",
             "stack-title": "// Software Stack",
             "work-title": "// Selected Work",
-            "project-1": "YouTube Music Redesign",
             "contact-title": "// Contact",
+            "project-1-title": "YouTube Music Redesign",
+            "project-1-desc-dk":
+                "Based on detected frictions, I designed new features to simplify constant tasks.",
+            "project-1-desc-mb":
+                "Based on detected frictions, I designed new features to simplify constant tasks.",
+            "project-1-before-title-dk": "Detected Problems (The before)",
+            "project-1-before-title-mb": "// Detected Problems",
+            "project-1-before-desc-dk": "Difficulty navigating long playlists.",
+            "project-1-before-desc-mb": "Difficulty navigating long playlists.",
+            "project-1-after-title-dk": "Results Obtained (The after)",
+            "project-1-after-title-mb": "// Results Obtained",
+            "project-1-after-desc-dk": "30% reduction in clicks to access favorite content.",
+            "project-1-after-desc-mb": "30% reduction in clicks to access favorite content.",
+            "btn-view": "View Project",
             exp: "Experienced",
             adv: "Advanced",
             prof: "Proficient",
@@ -55,20 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".lang-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
-            // Intercambio de idioma
             currentLang = currentLang === "ESP" ? "ENG" : "ESP";
 
-            // Actualizar etiqueta del botón para mostrar el SIGUIENTE idioma disponible
             const nextLabel = currentLang === "ESP" ? "ENG" : "ESP";
             document.querySelectorAll(".lang-label").forEach((el) => (el.textContent = nextLabel));
 
-            // Traducir contenidos por ID
+            // Traducir por ID
             Object.keys(translations[currentLang]).forEach((id) => {
                 const el = document.getElementById(id);
                 if (el) el.textContent = translations[currentLang][id];
             });
 
-            // Traducir niveles del stack (vía data-attribute)
+            // Traducir botones de proyecto por clase
+            document.querySelectorAll(".project-btn-label").forEach((el) => {
+                el.textContent = translations[currentLang]["btn-view"];
+            });
+
             document.querySelectorAll(".software-level").forEach((el) => {
                 const key = el.getAttribute("data-lang");
                 if (translations[currentLang][key]) el.textContent = translations[currentLang][key];

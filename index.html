@@ -70,7 +70,7 @@
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
             </svg><span class="text-[10px] font-bold" id="m-nav-story">STORY</span></a>
         <a href="#skills" class="mobile-nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91-6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
             </svg><span class="text-[10px] font-bold" id="m-nav-stack">STACK</span></a>
         <a href="#work" class="mobile-nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
@@ -108,30 +108,49 @@
         <section id="work" class="section-padding min-h-[100svh] flex flex-col justify-center py-10">
             <h3 id="work-title" class="text-[28px] md:text-[36px] font-700 mb-12 text-accent">// Selected Work</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                <div class="project-card group block relative cursor-default">
+
+                <div class="project-card group flex flex-col border border-white/10 rounded-[12px] p-4 lg:p-0 lg:border-none lg:rounded-none bg-warm-grey/5 lg:bg-transparent">
+
                     <div class="aspect-video bg-warm-grey border border-white/10 flex items-center justify-center relative overflow-hidden transition-all duration-300 rounded-[8px]">
-                        <img src="./assets/project-covers/yt-redesign-cover.png" alt="YouTube Redesign" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-0">
-                        <div class="absolute inset-0 flex flex-col justify-center px-6 lg:px-8 z-20 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none lg:pointer-events-auto">
-                            <h4 class="text-accent font-700 uppercase text-[16px] mb-2 lg:mb-4 lg:hidden">YouTube Music Redesign</h4>
-                            <p class="text-[16px] opacity-90 leading-relaxed mb-4">A partir de fricciones detectadas, diseñe nuevas funciones para simplificar tareas constantes.</p>
+                        <img src="./assets/project-covers/yt-redesign-cover.png" alt="YouTube Redesign" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 lg:group-hover:scale-110 lg:group-hover:brightness-0 pointer-events-none">
+
+                        <div class="hidden lg:flex absolute inset-0 flex flex-col justify-center px-8 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto">
+                            <p id="project-1-desc-dk" class="text-[16px] opacity-90 leading-relaxed mb-4">A partir de fricciones detectadas, diseñe nuevas funciones para simplificar tareas constantes.</p>
                             <div class="space-y-3 mb-6">
                                 <div>
-                                    <p class="text-[14px] uppercase tracking-tighter font-bold text-accent/80 mb-1">Problemas Detectados (El antes)</p>
-                                    <p class="text-[16px] opacity-70 border-l border-white/20 pl-3">Dificultad en la navegación de listas de reproducción extensas.</p>
+                                    <p id="project-1-before-title-dk" class="text-[14px] uppercase tracking-tighter font-bold text-accent/80 mb-1">Problemas Detectados (El antes)</p>
+                                    <p id="project-1-before-desc-dk" class="text-[16px] opacity-70 border-l border-white/20 pl-3">Dificultad en la navegación de listas de reproducción extensas.</p>
                                 </div>
                                 <div>
-                                    <p class="text-[14px] uppercase tracking-tighter font-bold text-accent/80 mb-1">Resultados Obtenidos (El después)</p>
-                                    <p class="text-[16px] opacity-70 border-l border-white/20 pl-3">Reducción del 30% en clics para acceder a contenido favorito.</p>
+                                    <p id="project-1-after-title-dk" class="text-[14px] uppercase tracking-tighter font-bold text-accent/80 mb-1">Resultados Obtenidos (El después)</p>
+                                    <p id="project-1-after-desc-dk" class="text-[16px] opacity-70 border-l border-white/20 pl-3">Reducción del 30% en clics para acceder a contenido favorito.</p>
                                 </div>
                             </div>
-                            <a href="#" target="_blank" class="w-fit px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-main transition-colors text-[14px] font-bold tracking-widest uppercase rounded-full">Ver Proyecto</a>
+                            <a href="#" target="_blank" class="project-btn-label w-fit px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-bg-main transition-colors text-[14px] font-bold tracking-widest uppercase rounded-full">Ver Proyecto</a>
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <h4 id="project-1" class="text-[24px] font-500 uppercase tracking-widest">YouTube Music Redesign</h4>
+
+                    <div class="mt-4 lg:mt-6 flex flex-col gap-4">
+                        <h4 id="project-1-title" class="text-[20px] md:text-[24px] font-500 uppercase tracking-widest">YouTube Music Redesign</h4>
+
+                        <div class="lg:hidden flex flex-col gap-4">
+                            <p id="project-1-desc-mb" class="text-[15px] opacity-80 leading-relaxed">A partir de fricciones detectadas, diseñe nuevas funciones para simplificar tareas constantes.</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <p id="project-1-before-title-mb" class="text-[12px] uppercase tracking-widest font-bold text-accent mb-1">// Problemas Detectados</p>
+                                    <p id="project-1-before-desc-mb" class="text-[14px] opacity-70 border-l border-accent/30 pl-3">Dificultad en la navegación de listas de reproducción extensas.</p>
+                                </div>
+                                <div>
+                                    <p id="project-1-after-title-mb" class="text-[12px] uppercase tracking-widest font-bold text-accent mb-1">// Resultados Obtenidos</p>
+                                    <p id="project-1-after-desc-mb" class="text-[14px] opacity-70 border-l border-accent/30 pl-3">Reducción del 30% en clics para acceder a contenido favorito.</p>
+                                </div>
+                            </div>
+                            <a href="#" target="_blank" class="project-btn-label w-fit mt-2 px-6 py-2 border border-accent text-accent active:bg-accent active:text-bg-main transition-colors text-[13px] font-bold tracking-widest uppercase rounded-full">Ver Proyecto</a>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card opacity-20 border border-dashed border-white/10 aspect-video flex items-center justify-center rounded-[8px]"><span class="text-[12px] uppercase tracking-widest">Coming Soon</span></div>
+
+                <div class="project-card opacity-20 border border-dashed border-white/10 aspect-video flex items-center justify-center rounded-[12px] lg:rounded-[8px]"><span class="text-[12px] uppercase tracking-widest">Coming Soon</span></div>
             </div>
         </section>
 
