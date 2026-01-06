@@ -1,9 +1,6 @@
 /* --- ESTILOS BASE --- */
-.font-worksans {
-    font-family: "Work Sans", sans-serif;
-}
-.font-didact {
-    font-family: "Didact Gothic", sans-serif;
+.font-karla {
+    font-family: "Karla", sans-serif;
 }
 .font-800 {
     font-weight: 800;
@@ -11,9 +8,14 @@
 .font-700 {
     font-weight: 700;
 }
-
-.h1-hero {
-    font-weight: 600 !important;
+.font-600 {
+    font-weight: 600;
+}
+.font-500 {
+    font-weight: 500;
+}
+.font-400 {
+    font-weight: 400;
 }
 
 html {
@@ -55,6 +57,7 @@ body {
     border-color: #4ef3a1;
     color: #4ef3a1;
 }
+
 .nav-link {
     font-size: 11px;
     font-weight: 600;
@@ -65,6 +68,7 @@ body {
 .nav-link:hover {
     color: #4ef3a1;
 }
+
 .mobile-nav-item {
     display: flex;
     flex-direction: column;
@@ -84,20 +88,6 @@ body {
 }
 
 /* --- TRABAJO --- */
-.project-info-drawer {
-    display: grid;
-    grid-template-rows: 1fr;
-    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@media (min-width: 1024px) {
-    .project-info-drawer {
-        grid-template-rows: 0fr;
-    }
-    .project-card:hover .project-info-drawer {
-        grid-template-rows: 1fr;
-    }
-}
-
 .lang-btn-pill:active,
 .mobile-nav-item:active,
 .project-card:active {
@@ -113,14 +103,14 @@ body {
     height: 50px;
     pointer-events: none;
     z-index: 0;
+    filter: blur(40px);
+    will-change: transform, opacity;
     background: linear-gradient(
         to top,
         rgba(78, 243, 161, 0.21) 0%,
         rgba(78, 243, 161, 0.06) 50%,
         transparent 100%
     );
-    filter: blur(40px);
-    will-change: transform, opacity;
 }
 
 .cosmic-active {

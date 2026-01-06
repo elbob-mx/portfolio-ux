@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollToPlugin);
 
-    let currentLang = "ESP";
+    let currentLang = "ESP"; // Inicia en Español
     const translations = {
         ESP: {
             "nav-start": "INICIO",
@@ -55,14 +55,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".lang-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
+            // Intercambio de idioma
             currentLang = currentLang === "ESP" ? "ENG" : "ESP";
-            document
-                .querySelectorAll(".lang-label")
-                .forEach((el) => (el.textContent = currentLang));
+
+            // Actualizar etiqueta del botón para mostrar el SIGUIENTE idioma disponible
+            const nextLabel = currentLang === "ESP" ? "ENG" : "ESP";
+            document.querySelectorAll(".lang-label").forEach((el) => (el.textContent = nextLabel));
+
+            // Traducir contenidos por ID
             Object.keys(translations[currentLang]).forEach((id) => {
                 const el = document.getElementById(id);
                 if (el) el.textContent = translations[currentLang][id];
             });
+
+            // Traducir niveles del stack (vía data-attribute)
             document.querySelectorAll(".software-level").forEach((el) => {
                 const key = el.getAttribute("data-lang");
                 if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
@@ -70,18 +76,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const stackContainer = document.getElementById("skills");
-    const softwareRows = document.querySelectorAll(".software-row");
-    gsap.set(softwareRows, { opacity: 0, x: -20 });
+    // Navegación suave con GSAP
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                gsap.to(window, { duration: 1, scrollTo: target, ease: "power4.out" });
+            }
+        });
+    });
+
+    // Animación de entrada para el Software Stack
     const stackObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    gsap.to(softwareRows, {
-                        opacity: 1,
-                        x: 0,
-                        duration: 0.8,
+                    gsap.from(".software-row", {
+                        opacity: 0,
+                        y: 20,
                         stagger: 0.1,
+                        duration: 0.8,
                         ease: "power2.out",
                     });
                     stackObserver.unobserve(entry.target);
@@ -90,37 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         { threshold: 0.2 }
     );
-    if (stackContainer) stackObserver.observe(stackContainer);
 
-    const contactSection = document.getElementById("contact");
-    const cosmicGlow = document.querySelector(".cosmic-light-glow");
-    const contactObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    gsap.to(cosmicGlow, { opacity: 1, duration: 2.5, ease: "sine.inOut" });
-                    cosmicGlow.classList.add("cosmic-active");
-                }
-            });
-        },
-        { threshold: 0.1 }
-    );
-    if (contactSection) contactObserver.observe(contactSection);
-
-    document.querySelectorAll("nav a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-            const targetId = link.getAttribute("href");
-            if (targetId && targetId.startsWith("#")) {
-                e.preventDefault();
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    gsap.to(window, {
-                        duration: 0.8,
-                        scrollTo: { y: targetSection, autoKill: false },
-                        ease: "power3.inOut",
-                    });
-                }
-            }
-        });
-    });
+    const stackSec = document.querySelector("#skills");
+    if (stackSec) stackObserver.observe(stackSec);
 });
