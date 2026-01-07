@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollToPlugin);
 
-    let currentLang = "ESP";
+    // CORRECCIÓN: Iniciamos en ENG para que coincida con el HTML físico
+    let currentLang = "ENG";
+
     const translations = {
         ESP: {
             "nav-start": "INICIO",
@@ -85,8 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".lang-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
+            // Cambiamos el idioma
             currentLang = currentLang === "ESP" ? "ENG" : "ESP";
 
+            // El botón siempre muestra el idioma al que puedes cambiar
             const nextLabel = currentLang === "ESP" ? "ENG" : "ESP";
             document.querySelectorAll(".lang-label").forEach((el) => (el.textContent = nextLabel));
 
